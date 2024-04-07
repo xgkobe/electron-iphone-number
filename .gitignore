@@ -17,6 +17,7 @@ pids
 *.pid.lock
 
 build/
+renderDist/
 
 render/node_modules/
 

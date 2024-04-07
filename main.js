@@ -18,15 +18,17 @@ const createWindow = () => {
     Menu.setApplicationMenu(null);
 
     if (isDevelopment) {
-        mainWindow.loadURL('http://localhost:8043/')
+        mainWindow.loadURL('http://localhost:8043/');
+        mainWindow.webContents.on('did-fail-load', () => {
+            mainWindow.loadURL('http://localhost:8043/');
+        });
     } else {
         const entryPath = path.resolve(__dirname, './renderDist/index.html')
         mainWindow.loadFile(entryPath)
-        // mainWindow.loadFile('index.html')
     }
     mainWindow.once('ready-to-show', () => {
         mainWindow.show()
-    })
+    });
 }
 
 app.whenReady().then(() => {
@@ -34,8 +36,8 @@ app.whenReady().then(() => {
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
-})
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
-})
+});
