@@ -96,7 +96,6 @@ ipcMain.on('search-batch-data', (event, data) => {
 
 ipcMain.on('download-xlsx-template', (event, {data, name}) => {
   const filePath = path.join(app.getPath('desktop'), `${name}.xlsx`);
-    console.log(filePath);
   fs.writeFile(filePath, data, 'binary', (err) => {
       event.sender.send('download-success', filePath);
   });
