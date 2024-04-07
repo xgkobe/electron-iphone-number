@@ -13,7 +13,7 @@ const createWindow = () => {
         nodeIntegration: true,
         contextIsolation: false,
       },
-      icon: path.resolve(__dirname, './assets/logo.jpeg')
+      icon: path.resolve(__dirname, './assets/logo.jpeg'),
     });
     Menu.setApplicationMenu(null);
 
@@ -24,10 +24,10 @@ const createWindow = () => {
         });
     } else {
         const entryPath = path.resolve(__dirname, './renderDist/index.html')
-        mainWindow.loadFile(entryPath)
+        mainWindow.loadFile(entryPath);
     }
     mainWindow.once('ready-to-show', () => {
-        mainWindow.show()
+        mainWindow.show();
     });
 }
 
@@ -35,7 +35,7 @@ app.whenReady().then(() => {
     createWindow();
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
-    })
+    });
 });
 
 app.on('window-all-closed', () => {
